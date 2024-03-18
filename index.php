@@ -20,6 +20,8 @@
 <?php
 // Vérifie si le formulaire à été soumis et que nameInput est présent
 if (isset($_POST['nameInput'])) {
+
+// Stocke la valeur entrée par l'utilisateur dans une variable
     $nameInput = $_POST['nameInput'];
     try{
         $bdd = new PDO('mysql:host=localhost:3306;dbname=Liste_inscription', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
