@@ -26,6 +26,8 @@ if (isset($_POST['nameInput'])) {
 
 // Essaie d'établir la connexion à la base de données
     try{
+
+// Crée un nouvel objet PDO pour la connection
         $bdd = new PDO('mysql:host=localhost:3306;dbname=Liste_inscription', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
       }
       catch (PDOException $e) {
