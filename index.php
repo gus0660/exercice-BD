@@ -9,13 +9,23 @@
 </head>
 
 <body>
-    <form class="m-5" action="#" method="post">
-        <div class="form-group text-center">
-            <label for="nameInput">Nom</label>
-            <input type="text" class="form-control w-25" id="nameInput" name="nameInput">
-            <button class="btn btn-primary" type="submit">S'enregistrer'</button>
-    </form>
-
+    <div class="container">
+        <form class="m-5" action="#" method="post">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="form-group text-center">
+                        <label for="nameInput">Nom</label>
+                        <input type="text" class="form-control m-2 border border-4" id="nameInput" name="nameInput" placeholder="Entrez votre Nom">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <button class="btn btn-primary" type="submit">S'enregistrer'</button>
+                </div>
+            </div>
+        </form>
+    </div>
     
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
