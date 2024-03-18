@@ -18,6 +18,7 @@
 </body>
 </html>
 <?php
+// Vérifie si le formulaire à été soumis et que nameInput est présent
 if (isset($_POST['nameInput'])) {
     $nameInput = $_POST['nameInput'];
     try{
