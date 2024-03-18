@@ -47,6 +47,8 @@ if (isset($_POST['nameInput'])) {
 // Exécute la requête
       $req->execute();
       echo "Inscription effectuée avec succès";
+
+// Prépare une requête SQL pour récupérer toutes les entrées de la table
       $sql = "SELECT * FROM archives";
       $req = $bdd->prepare($sql);
       $req->execute();
