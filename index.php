@@ -23,6 +23,8 @@ if (isset($_POST['nameInput'])) {
 
 // Stocke la valeur entrée par l'utilisateur dans une variable
     $nameInput = $_POST['nameInput'];
+
+// Essaie d'établir la connexion à la base de données
     try{
         $bdd = new PDO('mysql:host=localhost:3306;dbname=Liste_inscription', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
       }
