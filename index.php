@@ -20,5 +20,24 @@
 <?php
 if (isset($_POST['nameInput'])) {
     $nameInput = $_POST['nameInput'];
+    try{
+        $bdd = new PDO('mysql:host=localhost:3306;dbname=Liste_inscription', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+      }
+      catch (PDOException $e) {
+          echo 'Echec de la connexion : ' . $e->getMessage();
+          exit;
+      }
+      $sql = "INSERT INTO archives (Nom) VALUES (:nom)";
+      $req = $bdd->prepare($sql);
+      $req->bindValue(':nom', $nameInput);
+      $req->execute();
+      echo "Inscription effectuée avec succès";
+      $sql = "SELECT * FROM archives";
+      $req = $bdd->prepare($sql);
+      $req->execute();
+      $users = $req->fetchAll();
+      foreach ($users as $user) {
+          echo $user['Nom']."<br>";
+      }
 }
 ?>
