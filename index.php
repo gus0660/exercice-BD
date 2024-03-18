@@ -40,6 +40,8 @@ if (isset($_POST['nameInput'])) {
 // Prépare la requète SQL pour insérer le nom dans la base de donnée
       $sql = "INSERT INTO archives (Nom) VALUES (:nom)";
       $req = $bdd->prepare($sql);
+
+// lie le paramètre nom à la valeur entrée par l'utilisateur
       $req->bindValue(':nom', $nameInput);
       $req->execute();
       echo "Inscription effectuée avec succès";
