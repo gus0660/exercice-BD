@@ -16,18 +16,14 @@
             <button class="btn btn-primary" type="submit">S'enregistrer'</button>
     </form>
 
+    
+
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
 <?php
-// Vérifie si le formulaire à été soumis et que nameInput est présent
-if (isset($_POST['nameInput'])) {
-
-    // Stocke la valeur entrée par l'utilisateur dans une variable
-    $nameInput = $_POST['nameInput'];
-
-    // Essaie d'établir la connexion à la base de données
+// Essaie d'établir la connexion à la base de données
     try {
 
         // Crée un nouvel objet PDO pour la connection
@@ -40,7 +36,22 @@ if (isset($_POST['nameInput'])) {
         exit;
     }
 
-    // Prépare la requète SQL pour insérer le nom dans la base de donnée
+// Vérifie si le formulaire à été soumis et que nameInput est présent
+if (isset($_POST['nameInput'])) {
+
+
+
+    // Stocke la valeur entrée par l'utilisateur dans une variable
+    $nameInput = $_POST['nameInput'];
+
+    $qstmt = $bdd->prepare("SELECT COUNT(*) FROM archives WHERE nom = :nameInput");
+    $qstmt->bindParam(':nameInput', $nameInput);
+    $qstmt->execute();
+    $result = $qstmt->fetch();
+    if ($result['COUNT(*)'] > 0) {
+        echo "<script>alert('Nom déjà utilisé');</script>";
+    }else{
+        // Prépare la requète SQL pour insérer le nom dans la base de donnée
     $sql = "INSERT INTO archives (Nom) VALUES (:nom)";
     $req = $bdd->prepare($sql);
 
@@ -50,8 +61,11 @@ if (isset($_POST['nameInput'])) {
     // Exécute la requête
     $req->execute();
     echo "Inscription effectuée avec succès";
+    }
+    
 
-    // Prépare une requête SQL pour récupérer toutes les entrées de la table
+}
+// Prépare une requête SQL pour récupérer toutes les entrées de la table
     $sql = "SELECT * FROM archives";
     $req = $bdd->prepare($sql);
 
@@ -65,5 +79,5 @@ if (isset($_POST['nameInput'])) {
     foreach ($users as $user) {
         echo $user['Nom'] . "<br>";
     }
-}
+
 ?>
