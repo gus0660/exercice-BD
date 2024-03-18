@@ -30,6 +30,8 @@ if (isset($_POST['nameInput'])) {
 // Crée un nouvel objet PDO pour la connection
         $bdd = new PDO('mysql:host=localhost:3306;dbname=Liste_inscription', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
       }
+
+// Capture les exeptions si la connection échoue
       catch (PDOException $e) {
           echo 'Echec de la connexion : ' . $e->getMessage();
           exit;
