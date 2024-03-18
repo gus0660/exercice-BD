@@ -51,6 +51,8 @@ if (isset($_POST['nameInput'])) {
 // Prépare une requête SQL pour récupérer toutes les entrées de la table
       $sql = "SELECT * FROM archives";
       $req = $bdd->prepare($sql);
+
+// Exécute la requête
       $req->execute();
       $users = $req->fetchAll();
       foreach ($users as $user) {
