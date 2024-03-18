@@ -7,13 +7,18 @@
     <title>Liste d'inscription</title>
 </head>
 <body>
-    <form action="#" method="post">
-        <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" class="form-control" id="nom" name="nom">
+    <form class="m-5" action="#" method="post">
+        <div class="form-group text-center">
+            <label for="nameInput">Nom</label>
+            <input type="text" class="form-control w-25" id="nameInput" name="nameInput">
             <button class="btn btn-primary" type="submit">S'enregistrer'</button>
     </form>
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+if (isset($_POST['nameInput'])) {
+    $nameInput = $_POST['nameInput'];
+}
+?>
