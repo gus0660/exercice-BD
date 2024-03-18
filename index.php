@@ -57,6 +57,8 @@ if (isset($_POST['nameInput'])) {
 
 // Récupère tous les utilisateurs en tant qu'array
       $users = $req->fetchAll();
+
+// Parcourt et affiche le nom de chaque utilisateur
       foreach ($users as $user) {
           echo $user['Nom']."<br>";
       }
