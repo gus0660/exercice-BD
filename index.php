@@ -43,6 +43,8 @@ if (isset($_POST['nameInput'])) {
 
 // lie le paramètre nom à la valeur entrée par l'utilisateur
       $req->bindValue(':nom', $nameInput);
+
+// Exécute la requête
       $req->execute();
       echo "Inscription effectuée avec succès";
       $sql = "SELECT * FROM archives";
