@@ -7,7 +7,12 @@
     <title>Liste d'inscription</title>
 </head>
 <body>
-    
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom">
+            <button class="btn btn-primary" type="submit">S'enregistrer'</button>
+    </form>
 
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
