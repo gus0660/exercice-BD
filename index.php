@@ -36,6 +36,8 @@ if (isset($_POST['nameInput'])) {
           echo 'Echec de la connexion : ' . $e->getMessage();
           exit;
       }
+
+// Prépare la requète SQL pour insérer le nom dans la base de donnée
       $sql = "INSERT INTO archives (Nom) VALUES (:nom)";
       $req = $bdd->prepare($sql);
       $req->bindValue(':nom', $nameInput);
