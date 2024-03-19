@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <title>Liste d'inscription</title>
+    <script>
+        function confirmDelete() {
+            return confirm("Êtes-vous sûr de vouloir vider la base de données ?");
+        }
+    </script>
 </head>
 
 <body>
@@ -79,7 +84,7 @@
             foreach ($users as $user) {
                 echo $user['Nom'] . "<br>";
             }
-            
+
             // Vérifie si le bouton pour vider la base de données a été cliqué
             if (isset($_POST['clearDB'])) {
                 // Requête SQL pour vider la table
