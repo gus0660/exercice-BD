@@ -14,6 +14,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="form-group text-center">
+                        <h1 class="m-3">ADMINISTRATION BASE DE DONNEES</h1>
                         <label for="nameInput">Nom</label>
                         <input type="text" class="form-control m-2 border border-4" id="nameInput" name="nameInput" placeholder="Entrez votre Nom">
                         <label for="emailInput">email</label>
