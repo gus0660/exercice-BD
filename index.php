@@ -38,15 +38,35 @@
 
             <?php
             require 'db.php';
+            
+            // Prépare une requête SQL pour récupérer toutes les entrées de la table
+            $sql = "SELECT * FROM liste_utilisateurs";
+            $req = $bdd->prepare($sql);
+
+            // Exécute la requête
+            $req->execute();
+
+            // Récupère tous les utilisateurs en tant qu'array
+            $users = $req->fetchAll();
+
+            // Parcourt et affiche le nom de chaque utilisateur
+            foreach ($users as $user) {
+                echo $user['Nom'] . "<br>";
+            }
 
             // Vérifie si le formulaire à été soumis et que nameInput est présent
             if (isset($_POST['submit'])) {
 
                 // Stocke la valeur entrée par l'utilisateur dans une variable
+                if (!empty($_POST['nameInput']) &&!empty($_POST['emailInput']) &&!empty($_POST['passInput'])) {
                 $nameInput = $_POST['nameInput'];
                 $emailInput = $_POST['emailInput'];
                 $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT);
-
+                }else {
+                    echo "<script>alert('Veuillez remplir tous les champs');</script>";
+                    // header("Location: " . $_SERVER['PHP_SELF']);
+                    exit;
+                }
                 $qstmt = $bdd->prepare("SELECT COUNT(*) FROM liste_utilisateurs WHERE nom = :nameInput");
                 $qstmt->bindParam(':nameInput', $nameInput);
                 $qstmt->execute();
@@ -70,20 +90,7 @@
                     echo "Inscription effectuée avec succès : ";
                 }
             }
-            // Prépare une requête SQL pour récupérer toutes les entrées de la table
-            $sql = "SELECT * FROM liste_utilisateurs";
-            $req = $bdd->prepare($sql);
-
-            // Exécute la requête
-            $req->execute();
-
-            // Récupère tous les utilisateurs en tant qu'array
-            $users = $req->fetchAll();
-
-            // Parcourt et affiche le nom de chaque utilisateur
-            foreach ($users as $user) {
-                echo $user['Nom'] . "<br>";
-            }
+            
 
 // partie pour le bouton pour vider la base de données, pour suprimer ce bouton, suprimer le code qui suit,
 // ne pas oublier de suprimer aussi le script "confirmDelete" dans le head et le "button Vider la base de données" html
