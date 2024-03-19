@@ -3,7 +3,7 @@
 require __DIR__ . '/../vendor/autoload.php'; // Inclusion de l'autoloader de Composer
 
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 $dbHost = $_ENV['DB_HOST'];

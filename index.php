@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require 'config/db.php';
 if (isset($_GET['success']) && $_GET['success'] == 1) {
     echo "<script>alert('Inscription réussie');</script>";
 }
