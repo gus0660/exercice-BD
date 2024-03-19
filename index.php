@@ -85,6 +85,7 @@
                 echo $user['Nom'] . "<br>";
             }
 
+// partie pour le bouton pour vider la base de données
             // Vérifie si le bouton pour vider la base de données a été cliqué
             if (isset($_POST['clearDB'])) {
                 // Requête SQL pour vider la table
