@@ -91,6 +91,11 @@
                 $sql = "TRUNCATE TABLE liste_utilisateurs";
                 $req = $bdd->prepare($sql);
                 $req->execute();
+
+                // Rediriger vers la même page pour rafraîchir les données affichées
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit;
+
                 echo "<script>alert('Base de données vidée');</script>";
             }
 
