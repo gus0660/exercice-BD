@@ -86,7 +86,8 @@
             }
 
 // partie pour le bouton pour vider la base de données, pour suprimer ce bouton, suprimer le code qui suit,
-// ne pas oublier de suprimer aussi le script "confirmDelete" dans le head et le "button" html
+// ne pas oublier de suprimer aussi le script "confirmDelete" dans le head et le "button Vider la base de données" html
+
             // Vérifie si le bouton pour vider la base de données a été cliqué
             if (isset($_POST['clearDB'])) {
                 // Requête SQL pour vider la table
