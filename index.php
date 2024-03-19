@@ -27,6 +27,8 @@
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <input class="btn btn-primary" type="submit" name="submit">
+                    <input class="btn btn-danger" type="submit" name="clearDB" value="Vider la base de données" onclick="return confirmDelete();">
+
                 </div>
             </div>
 
