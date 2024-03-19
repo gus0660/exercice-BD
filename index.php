@@ -54,7 +54,8 @@
                 echo $user['Nom'] . "<br>";
             }
 
-            // Vérifie si le formulaire à été soumis et que nameInput est présent
+            session_start(); // Démarre la session pour pouvoir utiliser $_SESSION
+            // Vérifie si le formulaire à été soumis
             if (isset($_POST['submit'])) {
 
                 // Stocke la valeur entrée par l'utilisateur dans une variable

@@ -1,34 +1,38 @@
 <?php
 session_start(); // Démarre la session pour pouvoir utiliser $_SESSION
-if (isset($_POST['name'])) {
-    $username = $_POST['name']; // Récupération du nom d'utilisateur
-    require_once('db.php'); // Connexion à la base de données
-    // Vérification de l'existence du nom dans la base de données
-    $sql = "SELECT COUNT(*) FROM username WHERE `name` = :name"; // Requête SQL pour compter le nombre de noms identiques
-    $stmt = $pdo->prepare($sql); // Préparation de la requête
-    $stmt->bindParam(':name', $username); // Liaison de la variable $username à la requête
-    $stmt->execute(); // Exécution de la requête
-    $nameCount = $stmt->fetchColumn(); // Récupération du résultat
+// Vérifie si le formulaire à été soumis
+if (isset($_POST['submit'])) {
 
-    if ($nameCount == 0) {
-        // Le nom n'existe pas, donc on peut l'insérer
-        $sql = "INSERT INTO username (`name`) VALUES (:name)"; // Requête SQL pour insérer un nouveau nom
-        $stmt = $pdo->prepare($sql); // Préparation de la requête
-        $stmt->bindParam(':name', $username); // Liaison de la variable $username à la requête
-        $stmt->execute(); // Exécution de la requête
-        
-        $_SESSION['message'] = "Nouvel utilisateur ajouté."; // Message à afficher sur la page d'accueil
-        header('Location: index.php'); // Redirigez l'utilisateur vers la page d'accueil
-        exit; // Assurez-vous de terminer le script après la redirection
-
-    } else {
-        $_SESSION['message'] = "Le nom existe déjà dans la base de données."; // Message à afficher sur la page d'accueil
-        header('Location: index.php'); // Redirigez l'utilisateur vers la page d'accueil
-        exit; // Assurez-vous de terminer le script après la redirection
+    // Stocke la valeur entrée par l'utilisateur dans une variable
+    if (!empty($_POST['nameInput']) &&!empty($_POST['emailInput']) &&!empty($_POST['passInput'])) {
+    $nameInput = $_POST['nameInput'];
+    $emailInput = $_POST['emailInput'];
+    $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT);
+    }else {
+        echo "<script>alert('Veuillez remplir tous les champs');</script>";
+        // header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
     }
-    
-} else {
-    $_SESSION['message'] = "Veuillez entrer votre nom dans la liste."; // Message à afficher sur la page d'accueil
-    header('Location: index.php'); // Redirigez l'utilisateur vers la page d'accueil
-    exit; // Assurez-vous de terminer le script après la redirection
+    $qstmt = $bdd->prepare("SELECT COUNT(*) FROM liste_utilisateurs WHERE nom = :nameInput");
+    $qstmt->bindParam(':nameInput', $nameInput);
+    $qstmt->execute();
+    $result = $qstmt->fetch();
+    if ($result['COUNT(*)'] > 0) {
+        echo "<script>alert('Nom déjà utilisé');</script>";
+    } else {
+        // Prépare la requète SQL pour insérer le nom dans la base de donnée
+        $sql = "INSERT INTO liste_utilisateurs (Nom, email, password) VALUES (:nom, :email, :password)";
+        $req = $bdd->prepare($sql);
+
+        // lie le paramètre nom à la valeur entrée par l'utilisateur
+        $req->bindValue(':nom', $nameInput);
+        // lie le paramètre email à la valeur entrée par l'utilisateur
+        $req->bindValue(':email', $emailInput);
+        // lie le paramètre password à la valeur entrée par l'utilisateur
+        $req->bindValue(':password', $passInput);
+
+        // Exécute la requête
+        $req->execute();
+        echo "Inscription effectuée avec succès : ";
+    }
 }
