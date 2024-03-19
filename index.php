@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <title>Liste d'inscription</title>
-    <script>
+    <!-- <script>
         function confirmDelete() {
             return confirm("Êtes-vous sûr de vouloir vider la base de données ?");
         }
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -32,7 +32,7 @@
             <div class="row justify-content-center">
                 <div class="col-auto">
                     <input class="btn btn-primary" type="submit" name="submit">
-                    <input class="btn btn-danger" type="submit" name="clearDB" value="Vider la base de données" onclick="return confirmDelete();">
+                    <!-- <input class="btn btn-danger" type="submit" name="clearDB" value="Vider la base de données" onclick="return confirmDelete();"> -->
                 </div>
             </div>
 
@@ -92,22 +92,22 @@
             }
             
 
-// partie pour le bouton pour vider la base de données, pour suprimer ce bouton, suprimer le code qui suit,
-// ne pas oublier de suprimer aussi le script "confirmDelete" dans le head et le "button Vider la base de données" html
+// partie pour le bouton pour vider la base de données, décommenter les parties adéquates
+// ne pas oublier de décommenter aussi le script "confirmDelete" dans le head et le "button Vider la base de données" html
 
             // Vérifie si le bouton pour vider la base de données a été cliqué
-            if (isset($_POST['clearDB'])) {
-                // Requête SQL pour vider la table
-                $sql = "TRUNCATE TABLE liste_utilisateurs";
-                $req = $bdd->prepare($sql);
-                $req->execute();
+            // if (isset($_POST['clearDB'])) {
+// Requête SQL pour vider la table
+                // $sql = "TRUNCATE TABLE liste_utilisateurs";
+                // $req = $bdd->prepare($sql);
+                // $req->execute();
 
-                // Rediriger vers la même page pour rafraîchir les données affichées
-                header("Location: " . $_SERVER['PHP_SELF']);
-                exit;
+// Rediriger vers la même page pour rafraîchir les données affichées
+                // header("Location: " . $_SERVER['PHP_SELF']);
+                // exit;
 
-                echo "<script>alert('Base de données vidée');</script>";
-            }
+                // echo "<script>alert('Base de données vidée');</script>";
+            // }
 
             ?>
 
