@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php'; // Inclusion de l'autoloader de Composer
 
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);

@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once '../config/db.php';
 // Vérifie si le formulaire à été soumis
 if (isset($_POST['submit'])) {
 
