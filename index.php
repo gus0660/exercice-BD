@@ -28,7 +28,6 @@
                 <div class="col-auto">
                     <input class="btn btn-primary" type="submit" name="submit">
                     <input class="btn btn-danger" type="submit" name="clearDB" value="Vider la base de données" onclick="return confirmDelete();">
-
                 </div>
             </div>
 
@@ -80,8 +79,18 @@
             foreach ($users as $user) {
                 echo $user['Nom'] . "<br>";
             }
-            ?>
             
+            // Vérifie si le bouton pour vider la base de données a été cliqué
+            if (isset($_POST['clearDB'])) {
+                // Requête SQL pour vider la table
+                $sql = "TRUNCATE TABLE liste_utilisateurs";
+                $req = $bdd->prepare($sql);
+                $req->execute();
+                echo "<script>alert('Base de données vidée');</script>";
+            }
+
+            ?>
+
         </form>
 
     </div>
