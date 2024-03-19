@@ -61,37 +61,26 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
                     ?>
                 </div>
             </div>
-
-
             <?php
-
-            
-
-
             // partie pour le bouton pour vider la base de données, décommenter les parties adéquates
             // ne pas oublier de décommenter aussi le script "confirmDelete" dans le head et le "button Vider la base de données" html
 
-            // Vérifie si le bouton pour vider la base de données a été cliqué
+                            // Vérifie si le bouton pour vider la base de données a été cliqué
             // if (isset($_POST['clearDB'])) {
-            // Requête SQL pour vider la table
+                            // Requête SQL pour vider la table
             // $sql = "TRUNCATE TABLE liste_utilisateurs";
             // $req = $bdd->prepare($sql);
             // $req->execute();
 
-            // Rediriger vers la même page pour rafraîchir les données affichées
+                            // Rediriger vers la même page pour rafraîchir les données affichées
             // header("Location: " . $_SERVER['PHP_SELF']);
             // exit;
 
             // echo "<script>alert('Base de données vidée');</script>";
             // }
-
             ?>
-
         </form>
-
     </div>
-
-
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 
