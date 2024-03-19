@@ -1,3 +1,6 @@
+<?php
+require 'db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,37 +38,41 @@
                     <!-- <input class="btn btn-danger" type="submit" name="clearDB" value="Vider la base de données" onclick="return confirmDelete();"> -->
                 </div>
             </div>
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <?php
+                    // Prépare une requête SQL pour récupérer toutes les entrées de la table
+                    $sql = "SELECT * FROM liste_utilisateurs";
+                    $req = $bdd->prepare($sql);
+
+                    // Exécute la requête
+                    $req->execute();
+
+                    // Récupère tous les utilisateurs en tant qu'array
+                    $users = $req->fetchAll();
+
+                    // Parcourt et affiche le nom de chaque utilisateur
+                    foreach ($users as $user) {
+                        echo "<p class='user-name'>" . htmlspecialchars($user['Nom']) . "</p>";
+                    }
+                    ?>
+                </div>
+            </div>
+
 
             <?php
-            require 'db.php';
-            
-            // Prépare une requête SQL pour récupérer toutes les entrées de la table
-            $sql = "SELECT * FROM liste_utilisateurs";
-            $req = $bdd->prepare($sql);
 
-            // Exécute la requête
-            $req->execute();
-
-            // Récupère tous les utilisateurs en tant qu'array
-            $users = $req->fetchAll();
-
-            // Parcourt et affiche le nom de chaque utilisateur
-            foreach ($users as $user) {
-                echo $user['Nom'] . "<br>";
-            }
-
-            session_start(); // Démarre la session pour pouvoir utiliser $_SESSION
             // Vérifie si le formulaire à été soumis
             if (isset($_POST['submit'])) {
 
                 // Stocke la valeur entrée par l'utilisateur dans une variable
-                if (!empty($_POST['nameInput']) &&!empty($_POST['emailInput']) &&!empty($_POST['passInput'])) {
-                $nameInput = $_POST['nameInput'];
-                $emailInput = $_POST['emailInput'];
-                $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT);
-                }else {
-                    echo "<script>alert('Veuillez remplir tous les champs');</script>";
-                    // header("Location: " . $_SERVER['PHP_SELF']);
+                if (!empty($_POST['nameInput']) && !empty($_POST['emailInput']) && !empty($_POST['passInput'])) {
+                    $nameInput = $_POST['nameInput'];
+                    $emailInput = $_POST['emailInput'];
+                    $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT);
+                } else {
+                    // echo "<script>alert('Veuillez remplir tous les champs');</script>";
+                    header("Location: " . $_SERVER['PHP_SELF']);
                     exit;
                 }
                 $qstmt = $bdd->prepare("SELECT COUNT(*) FROM liste_utilisateurs WHERE nom = :nameInput");
@@ -90,24 +97,25 @@
                     $req->execute();
                     echo "Inscription effectuée avec succès : ";
                 }
+                // header("Location: " . $_SERVER['PHP_SELF']);
             }
-            
 
-// partie pour le bouton pour vider la base de données, décommenter les parties adéquates
-// ne pas oublier de décommenter aussi le script "confirmDelete" dans le head et le "button Vider la base de données" html
+
+            // partie pour le bouton pour vider la base de données, décommenter les parties adéquates
+            // ne pas oublier de décommenter aussi le script "confirmDelete" dans le head et le "button Vider la base de données" html
 
             // Vérifie si le bouton pour vider la base de données a été cliqué
             // if (isset($_POST['clearDB'])) {
-// Requête SQL pour vider la table
-                // $sql = "TRUNCATE TABLE liste_utilisateurs";
-                // $req = $bdd->prepare($sql);
-                // $req->execute();
+            // Requête SQL pour vider la table
+            // $sql = "TRUNCATE TABLE liste_utilisateurs";
+            // $req = $bdd->prepare($sql);
+            // $req->execute();
 
-// Rediriger vers la même page pour rafraîchir les données affichées
-                // header("Location: " . $_SERVER['PHP_SELF']);
-                // exit;
+            // Rediriger vers la même page pour rafraîchir les données affichées
+            // header("Location: " . $_SERVER['PHP_SELF']);
+            // exit;
 
-                // echo "<script>alert('Base de données vidée');</script>";
+            // echo "<script>alert('Base de données vidée');</script>";
             // }
 
             ?>
