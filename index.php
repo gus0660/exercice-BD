@@ -31,7 +31,7 @@ include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
                 
                 <div class="form-group text-center">
                     
-                    <h1 class="m-3">ADMINISTRATION BASE DE DONNEES</h1>
+                    <h1 class="m-3">BIENVENUE</h1>
                     <label for="nameInput">Nom</label>
                     <input type="text" class="form-control m-2 border border-4" id="nameInput" name="nameInput" placeholder="Entrez votre Nom">
                     <label for="emailInput">email</label>
