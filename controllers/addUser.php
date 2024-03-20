@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     // Stocke la valeur entrée par l'utilisateur dans une variable
     if (!empty($_POST['nameInput']) && !empty($_POST['emailInput']) && !empty($_POST['passInput'])) {
         $nameInput = $_POST['nameInput'];
-        $emailInput = $_POST['emailInput'];
+        $emailInput = filter_var($_POST['emailInput'], FILTER_VALIDATE_EMAIL);
         $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT);
         
     } else {
