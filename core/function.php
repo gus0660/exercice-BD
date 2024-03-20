@@ -28,6 +28,17 @@ function messageSession(){
     unset($_SESSION['message']); // Suppression du message de la session
   }
 }
+function validatNotImpty($fiel, $fieldName){
+  if (empty($fiel)) {
+    return "Le champ $fieldName ne peut pas être vide!";
+  }
+}
+function validateUserName($name){
+  if (!preg_match('/^[a-zA-Z]{4,30}$/', $name)) {
+    return "Le nom de l'utilisateur doit être composé de 4 à 30 lettres et sans chiffres ou caractères spéciaux!";
+  }
+  return null;
+}
 function logOutUser(){
   if (isset($_GET['logout']) && $_GET['logout'] == 'success'){ // Vérification de la déconnexion
     $message = "Vous avez été déconnecté avec succès."; // Message de déconnexion
