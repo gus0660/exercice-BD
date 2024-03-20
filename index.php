@@ -1,6 +1,7 @@
 <?php
 session_start();
 require 'config/db.php';
+require 'core/function.php';
 $title = 'Accueil'; // déclaration du titre de la page
 if (isset($_GET['success']) && $_GET['success'] == 1) {
     echo "<script>alert('Inscription réussie');</script>";
@@ -49,20 +50,7 @@ include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
         <div class="row justify-content-center">
             <div class="col-12 text-center">
                 <?php
-                // Prépare une requête SQL pour récupérer toutes les entrées de la table
-                $sql = "SELECT * FROM liste_utilisateurs";
-                $req = $bdd->prepare($sql);
-
-                // Exécute la requête
-                $req->execute();
-
-                // Récupère tous les utilisateurs en tant qu'array
-                $users = $req->fetchAll();
-
-                // Parcourt et affiche le nom de chaque utilisateur
-                foreach ($users as $user) {
-                    echo "<p class='user-name'>" . htmlspecialchars($user['Nom']) . "</p>";
-                }
+                displayUsers();
                 ?>
             </div>
         </div>
