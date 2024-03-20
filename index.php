@@ -1,18 +1,23 @@
 <?php
+session_start();
 require 'config/db.php';
+$title = 'Accueil'; // déclaration du titre de la page
 if (isset($_GET['success']) && $_GET['success'] == 1) {
     echo "<script>alert('Inscription réussie');</script>";
+}
+if (isset($_GET['logout']) && $_GET['logout'] == 'success') { // Vérification de la déconnexion
+    $message = "Vous avez été déconnecté avec succès."; // Message de déconnexion
 }
 include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
 include 'pages/partials/menu.php'; // Inclusion du fichier de menu
 include 'pages/partials/footer.php'; // Inclusion du fichier de pied de page
         if (isset($_SESSION['message'])) { // Vérification de l'existence du message de la session
-            echo "<h1>" . $_SESSION['message'] . "</h1>"; // Affichage du message de la session
+            echo "<h5>" . $_SESSION['message'] . "</h5>"; // Affichage du message de la session
             unset($_SESSION['message']); // Suppression du message de la session
         }
 ?>
 <?php if (isset($message)) {
-    echo "<h1>$message</h1>";
+    echo "<h5>$message</h5>";
 } ?> <!-- Affichage du message de déconnexion -->
 <section class="container">
     <form class="m-5" action="controllers/addUser.php" method="post">
