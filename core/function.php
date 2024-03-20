@@ -39,6 +39,12 @@ function validateUserName($name){
   }
   return null;
 }
+function validatePassword($password){
+  if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{4,30}$/', $password)){
+ return "Le mot de passe doit être composé de 4 à 30 lettres et des chiffres!";
+  }
+  return null;
+}
 function logOutUser(){
   if (isset($_GET['logout']) && $_GET['logout'] == 'success'){ // Vérification de la déconnexion
     $message = "Vous avez été déconnecté avec succès."; // Message de déconnexion
