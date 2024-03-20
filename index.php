@@ -18,12 +18,8 @@ include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
     echo "<h5>$message</h5>";
 } ?> <!-- Affichage du message de déconnexion -->
 <section class="container">
-    <?php include 'pages/partials/menu.php'; 
-    if (isset($_SESSION['message'])) { // Vérification de l'existence du message de la session
-        echo "<h5>" . $_SESSION['message'] . "</h5>"; // Affichage du message de la session
-        unset($_SESSION['message']); // Suppression du message de la session
-    }
-    ?>
+    <?php include 'pages/partials/menu.php'; ?>
+    
     <form class="m-5" action="controllers/addUser.php" method="POST">
 
         <div class="row justify-content-center">
@@ -31,7 +27,7 @@ include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
             <div class="col-12 col-md-6 col-lg-4">
                 
                 <div class="form-group text-center">
-                    
+                    <?php messageSession(); ?>
                     <h1 class="m-3">BIENVENUE</h1>
                     <label for="nameInput">Nom</label>
                     <input type="text" class="form-control m-2 border border-4" id="nameInput" name="nameInput" placeholder="Entrez votre Nom">
