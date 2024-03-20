@@ -1,9 +1,9 @@
 <?php
 function logedIn(){
-    if(!isset($_SESSION['profil'])){
-        header('Location: index.php');
-        exit;
-      }
+  if (!isset($_SESSION['profil'])) {
+    header('Location: index.php');
+    exit;
+  }
 }
 function displayUsers(){
   global $bdd;
@@ -19,13 +19,20 @@ function displayUsers(){
 
   // Parcourt et affiche le nom de chaque utilisateur
   foreach ($users as $user) {
-      echo "<p class='user-name'>" . htmlspecialchars($user['Nom']) . "</p>";
+    echo "<p class='user-name'>" . htmlspecialchars($user['Nom']) . "</p>";
   }
 }
 function messageSession(){
-  global $_SESSION;
   if (isset($_SESSION['message'])) { // Vérification de l'existence du message de la session
     echo "<h5>" . $_SESSION['message'] . "</h5>"; // Affichage du message de la session
     unset($_SESSION['message']); // Suppression du message de la session
+  }
 }
+function logOutUser(){
+  if (isset($_GET['logout']) && $_GET['logout'] == 'success'){ // Vérification de la déconnexion
+    $message = "Vous avez été déconnecté avec succès."; // Message de déconnexion
+  }
+  if (isset($message)) {
+    echo "<h5>$message</h5>";
+  }
 }

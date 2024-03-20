@@ -3,23 +3,11 @@ session_start();
 require 'config/db.php';
 require 'core/function.php';
 $title = 'Accueil'; // déclaration du titre de la page
-if (isset($_GET['success']) && $_GET['success'] == 1) {
-    echo "<script>alert('Inscription réussie');</script>";
-}
-if (isset($_GET['logout']) && $_GET['logout'] == 'success') { // Vérification de la déconnexion
-    $message = "Vous avez été déconnecté avec succès."; // Message de déconnexion
-}
 include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
-
-
-
 ?>
-<?php if (isset($message)) {
-    echo "<h5>$message</h5>";
-} ?> <!-- Affichage du message de déconnexion -->
 <section class="container">
     <?php include 'pages/partials/menu.php'; ?>
-    
+
     <form class="m-5" action="controllers/addUser.php" method="POST">
 
         <div class="row justify-content-center">
@@ -27,7 +15,10 @@ include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
             <div class="col-12 col-md-6 col-lg-4">
                 
                 <div class="form-group text-center">
-                    <?php messageSession(); ?>
+                    <?php 
+                    messageSession();
+                    logOutUser();
+                    ?>
                     <h1 class="m-3">BIENVENUE</h1>
                     <label for="nameInput">Nom</label>
                     <input type="text" class="form-control m-2 border border-4" id="nameInput" name="nameInput" placeholder="Entrez votre Nom">
