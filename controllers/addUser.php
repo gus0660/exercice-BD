@@ -10,11 +10,11 @@ if (isset($_POST['submit'])) {
         $emailInput = $_POST['emailInput'];
         $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT);
     } else {
-        // echo "<script>alert('Veuillez remplir tous les champs');</script>";
-        header("Location: index.php");
+        echo "<script>alert('Veuillez remplir tous les champs');</script>";
+        header("Location: ../index.php");
         exit;
     }
-    require 'db.php';
+    require '../config/db.php';
     $qstmt = $bdd->prepare("SELECT COUNT(*) FROM liste_utilisateurs WHERE nom = :nameInput");
     $qstmt->bindParam(':nameInput', $nameInput);
     $qstmt->execute();
@@ -38,5 +38,5 @@ if (isset($_POST['submit'])) {
         $req->execute();
         
     }
-    header("Location: index.php?success=1");
+    // header("Location: index.php?success=1");
 }

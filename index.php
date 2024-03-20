@@ -5,6 +5,11 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
 }
 include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
 include 'pages/partials/menu.php'; // Inclusion du fichier de menu
+include 'pages/partials/footer.php'; // Inclusion du fichier de pied de page
+        if (isset($_SESSION['message'])) { // Vérification de l'existence du message de la session
+            echo "<h1>" . $_SESSION['message'] . "</h1>"; // Affichage du message de la session
+            unset($_SESSION['message']); // Suppression du message de la session
+        }
 ?>
 <?php if (isset($message)) {
     echo "<h1>$message</h1>";
@@ -67,12 +72,7 @@ include 'pages/partials/menu.php'; // Inclusion du fichier de menu
 
         // echo "<script>alert('Base de données vidée');</script>";
         // }
-        include 'pages/partials/footer.php'; // Inclusion du fichier de pied de page
-        if (isset($_SESSION['message'])) { // Vérification de l'existence du message de la session
-            echo "<h1>" . $_SESSION['message'] . "</h1>"; // Affichage du message de la session
-            unset($_SESSION['message']); // Suppression du message de la session
-        }
-        require 'config/db.php'; // Inclusion du fichier de connexion à la base de données
+        
         ?>
     </form>
 </section>
