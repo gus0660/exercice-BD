@@ -3,6 +3,8 @@ require 'config/db.php';
 if (isset($_GET['success']) && $_GET['success'] == 1) {
     echo "<script>alert('Inscription réussie');</script>";
 }
+include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
+include 'pages/partials/menu.php'; // Inclusion du fichier de menu
 ?>
 <!DOCTYPE html>
 <html lang="en">
