@@ -4,10 +4,6 @@ require_once '../config/db.php';
 // Vérifie si le formulaire à été soumis
 if (isset($_POST['submit'])) {
 
-    // if (isset($_POST['submit'])){
-    //     $nameError = validatNotImpty($_POST['nameInput'], 'Nom') ?: validateUserName($_POST['nameInput']);
-    //     $passwordError = validatNotImpty($_POST['passInput'], 'Password')?: validatePassword($_POST['passInput']);
-    // }
     // Stocke la valeur entrée par l'utilisateur dans une variable
     if (!empty($_POST['nameInput']) && !empty($_POST['emailInput']) && !empty($_POST['passInput'])) {
         $nameInput = $_POST['nameInput'];
@@ -19,6 +15,12 @@ if (isset($_POST['submit'])) {
         header("Location: ../index.php");
         exit;
     }
+    
+    // if (isset($_POST['submit'])){
+    //     $nameError = validatNotImpty($_POST['nameInput'], 'Nom') ?: validateUserName($_POST['nameInput']);
+    //     $passwordError = validatNotImpty($_POST['passInput'], 'Password')?: validatePassword($_POST['passInput']);
+    // }
+    
     require '../config/db.php';
     $qstmt = $bdd->prepare("SELECT COUNT(*) FROM liste_utilisateurs WHERE email = :emailInput");
     $qstmt->bindParam(':emailInput', $emailInput);
