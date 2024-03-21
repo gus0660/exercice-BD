@@ -44,6 +44,7 @@ function validateUserName($name){
     // Si le nom ne correspond pas, retourne un message d'erreur
     return "Le nom de l'utilisateur doit être composé de 4 à 30 lettres et sans chiffres ou caractères spéciaux!";
   }
+  // Si le nom est valide, retourne null
   return null;
 }
 function validateEmail($email) {
