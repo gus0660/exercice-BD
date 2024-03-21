@@ -64,7 +64,6 @@ function validateEmail($email, $bdd) {
   // Si l'email est valide et n'existe pas déjà, retourne vrai
   return true;
 }
-
 function validatePassword($password){
   if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{4,30}$/', $password)){
  return "Le mot de passe doit être composé de 4 à 30 lettres et des chiffres!";
