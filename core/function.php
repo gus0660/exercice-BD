@@ -41,6 +41,7 @@ function validateUserName($name){
     // {4,30} : la longueur du nom doit être d'au moins 4 caractères et de maximum 30 caractères
     // $ : la fin de la chaîne de caractères
   if (!preg_match('/^[a-zA-Z]{4,30}$/', $name)) {
+    // Si le nom ne correspond pas, retourne un message d'erreur
     return "Le nom de l'utilisateur doit être composé de 4 à 30 lettres et sans chiffres ou caractères spéciaux!";
   }
   return null;
