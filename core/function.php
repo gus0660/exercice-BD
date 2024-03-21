@@ -44,6 +44,18 @@ function validateUserName($name){
     // Si le nom ne correspond pas, retourne un message d'erreur
     return "Le nom de l'utilisateur doit être composé de 4 à 30 lettres et sans chiffres ou caractères spéciaux!";
   }
+  // Préparation de la requête pour vérifier si le nom existe déjà dans la base de données
+  $stmt = $bdd->prepare("SELECT COUNT(*) FROM users WHERE username = :name");
+  $stmt->bindParam(':name', $name);
+  $stmt->execute();
+
+  // Récupération du résultat de la requête
+  $count = $stmt->fetchColumn();
+
+  // Vérification si le nom d'utilisateur existe déjà
+  if ($count > 0) {
+      return "Le nom existe déjà.";
+  }
   // Si le nom est valide, retourne null
   return null;
 }
