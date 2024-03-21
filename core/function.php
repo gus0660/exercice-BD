@@ -39,6 +39,32 @@ function validateUserName($name){
   }
   return null;
 }
+function validateEmail($email, $bdd) {
+  // Expression régulière pour valider le format de l'email
+  $emailRegex = '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/';
+
+  // Vérifie si l'email correspond au format de l'expression régulière
+  if (!preg_match($emailRegex, $email)) {
+      return false;
+  }
+
+  // Préparation de la requête pour vérifier si l'email existe déjà dans la base de données
+  $stmt = $bdd->prepare("SELECT COUNT(*) FROM liste_utilisateurs WHERE email = :email");
+  $stmt->bindParam(':email', $email);
+  $stmt->execute();
+
+  // Récupération du résultat
+  $result = $stmt->fetchColumn();
+
+  // Vérifie si l'email existe déjà
+  if ($result > 0) {
+      return false;
+  }
+
+  // Si l'email est valide et n'existe pas déjà, retourne vrai
+  return true;
+}
+
 function validatePassword($password){
   if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{4,30}$/', $password)){
  return "Le mot de passe doit être composé de 4 à 30 lettres et des chiffres!";
