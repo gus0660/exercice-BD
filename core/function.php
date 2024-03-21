@@ -39,7 +39,7 @@ function validateUserName($name){
   }
   return null;
 }
-function validateEmail($email, $bdd) {
+function validateEmail($email) {
   global $bdd;
   // Expression régulière pour valider le format de l'email
   $emailRegex = '/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/';
