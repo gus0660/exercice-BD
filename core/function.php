@@ -34,6 +34,12 @@ function validatNotImpty($fiel, $fieldName){
   }
 }
 function validateUserName($name){
+  // Vérifie si le nom d'utilisateur correspond à l'expression régulière spécifiée
+    // L'expression régulière '/^[a-zA-Z]{4,30}$/' signifie :
+    // ^ : le début de la chaîne de caractères
+    // [a-zA-Z] : n'importe quelle lettre minuscule ou majuscule (sans chiffres ni caractères spéciaux)
+    // {4,30} : la longueur du nom doit être d'au moins 4 caractères et de maximum 30 caractères
+    // $ : la fin de la chaîne de caractères
   if (!preg_match('/^[a-zA-Z]{4,30}$/', $name)) {
     return "Le nom de l'utilisateur doit être composé de 4 à 30 lettres et sans chiffres ou caractères spéciaux!";
   }
@@ -46,7 +52,7 @@ function validateEmail($email) {
 
   // Vérifie si l'email correspond au format de l'expression régulière
   if (!preg_match($emailRegex, $email)) {
-      return false;
+      return null;
   }
 
   // Préparation de la requête pour vérifier si l'email existe déjà dans la base de données
@@ -59,11 +65,8 @@ function validateEmail($email) {
 
   // Vérifie si l'email existe déjà
   if ($result > 0) {
-      return false;
+      return null;
   }
-
-  // Si l'email est valide et n'existe pas déjà, retourne vrai
-  return true;
 }
 function validatePassword($password){
   if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{4,30}$/', $password)){
