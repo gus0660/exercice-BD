@@ -34,6 +34,7 @@ function validatNotImpty($fiel, $fieldName){
   }
 }
 function validateUserName($name){
+  global $bdd;
   // Vérifie si le nom d'utilisateur correspond à l'expression régulière spécifiée
     // L'expression régulière '/^[a-zA-Z]{4,30}$/' signifie :
     // ^ : le début de la chaîne de caractères
