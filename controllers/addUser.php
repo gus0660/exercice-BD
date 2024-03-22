@@ -4,11 +4,11 @@ require_once '../config/db.php';
 // Vérifie si le formulaire à été soumis
 if (isset($_POST['submit'])) {
 
-if (isset($_POST['submit'])){
-        $nameError = validatNotImpty($_POST['nameInput'], 'Nom') ?: validateUserName($_POST['nameInput']);
-        $emailError = validatNotImpty($_POST['emailInput'], 'email') ?: validateEmail($_POST['emailInput']);
-        $passwordError = validatNotImpty($_POST['passInput'], 'Password')?: validatePassword($_POST['passInput']);
-    }
+// if (isset($_POST['submit'])){
+//         $nameError = validatNotImpty($_POST['nameInput'], 'Nom') ?: validateUserName($_POST['nameInput']);
+//         $emailError = validatNotImpty($_POST['emailInput'], 'email') ?: validateEmail($_POST['emailInput']);
+//         $passwordError = validatNotImpty($_POST['passInput'], 'Password')?: validatePassword($_POST['passInput']);
+//     }
 
     // Stocke la valeur entrée par l'utilisateur dans une variable
     if (!empty($_POST['nameInput']) && !empty($_POST['emailInput']) && !empty($_POST['passInput'])) {
