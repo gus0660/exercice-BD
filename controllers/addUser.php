@@ -26,13 +26,14 @@ if (isset($_POST['submit'])) {
     $qstmt->bindParam(':emailInput', $emailInput); // Liaison de l'email à la requête
     $qstmt->execute();
     
-    $result = $qstmt->fetch();
+    $result = $qstmt->fetch(); // Récupération du résultat
     if ($result['COUNT(*)'] > 0) {
+        // Si l'email est déjà utilisé, enregistrement d'un message et redirection
         $_SESSION['message'] = "Email déjà utilisé!";
         header("Location:../index.php");
         exit;
     } else {
-        // Prépare la requète SQL pour insérer le nom dans la base de donnée
+        // Préparation de la requête SQL pour insérer les informations de l'utilisateur
         $sql = "INSERT INTO liste_utilisateurs (Nom, email, password) VALUES (:nom, :email, :password)";
         $req = $bdd->prepare($sql);
 
@@ -45,7 +46,9 @@ if (isset($_POST['submit'])) {
 
         // Exécute la requête
         $req->execute();
-        $idUser = $bdd->lastInsertId();
+        $idUser = $bdd->lastInsertId(); // Récupération de l'ID de l'utilisateur inséré
+
+    // Enregistrement d'un message de succès et des informations de l'utilisateur dans la session
         $_SESSION['message'] = "Vous êtes bien inscrit !";
         $_SESSION['profil'] = ['name' => $nameInput, 'email' => $emailInput, 'password' => $passInput, 'id' => $idUser];
         header("Location: ../profil");
