@@ -51,6 +51,7 @@ if (isset($_POST['submit'])) {
     // Enregistrement d'un message de succès et des informations de l'utilisateur dans la session
         $_SESSION['message'] = "Vous êtes bien inscrit !";
         $_SESSION['profil'] = ['name' => $nameInput, 'email' => $emailInput, 'password' => $passInput, 'id' => $idUser];
+        // Redirection vers la page de profil
         header("Location: ../profil");
         exit();
     }
