@@ -53,5 +53,4 @@ if (isset($_POST['submit'])) {
         header("Location: ../profil");
         exit();
     }
-    // header("Location: index.php?success=1");
 }

@@ -91,9 +91,9 @@ function validatePassword($password){
 }
 function logOutUser(){
   if (isset($_GET['logout']) && $_GET['logout'] == 'success'){ // Vérification de la déconnexion
-    $message = "Vous avez été déconnecté avec succès."; // Message de déconnexion
+    $message = "div class='row'><div class='alert alert-success col-6 m-auto p-3 my-3'>Vous etes bien déconnecté</div></div>"; // Message de déconnexion
   }
   if (isset($message)) {
-    echo "<h5>$message</h5>";
+    echo "$message";
   }
 }
