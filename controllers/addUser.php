@@ -14,11 +14,14 @@ if (isset($_POST['submit'])) {
         $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT); // Hachage et stockage du mot de passe
         
     } else {
+        // Enregistrement d'un message et redirection si tous les champs ne sont pas remplis
         $_SESSION['message'] = "Veuillez remplir tous les champs!";
         header("Location: ../index.php");
         exit;
     }
+    // Connexion à la base de données (répétition, pourrait être supprimée si déjà connecté)
     require '../config/db.php';
+    // Préparation de la requête pour vérifier si l'email est déjà utilisé
     $qstmt = $bdd->prepare("SELECT COUNT(*) FROM liste_utilisateurs WHERE email = :emailInput");
     $qstmt->bindParam(':emailInput', $emailInput);
     $qstmt->execute();
