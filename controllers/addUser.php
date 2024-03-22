@@ -10,8 +10,8 @@ if (isset($_POST['submit'])) {
     // Création d'une variable($nameInput) qui vient du post de nameInput.
         $nameInput = $_POST['nameInput']; // Stockage du nom
 
-        $emailInput = filter_var($_POST['emailInput'], FILTER_VALIDATE_EMAIL);
-        $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT);
+        $emailInput = filter_var($_POST['emailInput'], FILTER_VALIDATE_EMAIL); // Validation et stockage de l'email
+        $passInput = password_hash($_POST['passInput'], PASSWORD_DEFAULT); // Hachage et stockage du mot de passe
         
     } else {
         $_SESSION['message'] = "Veuillez remplir tous les champs!";
