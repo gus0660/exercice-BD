@@ -1,8 +1,9 @@
 <?php
 session_start();
+$title = 'Accueil'; // déclaration du titre de la page
 require 'config/db.php';
 require 'core/function.php';
-$title = 'Accueil'; // déclaration du titre de la page
+
 include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
 ?>
 <section class="container">
