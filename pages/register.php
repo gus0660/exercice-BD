@@ -9,7 +9,7 @@ include 'partials/menu.php'; // Inclusion du fichier de menu
 <h1 class="mt-3 text-center">Formulaire d'inscription</h1>
 
     <div class="col-6 m-auto border border-1 rounded p-3">
-    <?php displayMessage(); ?>
+    <?php messageSession(); ?>
         <form method="POST" action="controllers/addUser.php">
             <div class="mb-3">
                 <label for="name" class="form-label">Username</label>
