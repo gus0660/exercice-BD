@@ -1,3 +1,7 @@
+.navbar-custom {
+    display: flex;
+    justify-content: center; /* centre les éléments à l'intérieur */
+}
 .list-user{
     height: 50vh;
     overflow-y: scroll;
