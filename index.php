@@ -3,11 +3,10 @@ session_start();
 $title = 'Accueil'; // déclaration du titre de la page
 require 'config/db.php';
 require 'core/function.php';
-
 include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
+include 'pages/partials/menu.php'; // Inclusion du fichier du menu
 ?>
 <section class="container">
-    <?php include 'pages/partials/menu.php'; ?>
 
     <form class="m-5" action="controllers/addUser.php" method="POST">
 
