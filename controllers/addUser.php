@@ -19,8 +19,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../index.php");
         exit;
     }
-    // Connexion à la base de données (répétition, pourrait être supprimée si déjà connecté)
-    // require '../config/db.php';
+    
     // Préparation de la requête pour vérifier si l'email est déjà utilisé
     $qstmt = $bdd->prepare("SELECT COUNT(*) FROM liste_utilisateurs WHERE email = :emailInput");
     $qstmt->bindParam(':emailInput', $emailInput); // Liaison de l'email à la requête
