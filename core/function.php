@@ -97,3 +97,6 @@ function logOutUser(){
     echo "$message";
   }
 }
+function createUser(){
+  global $bdd;
+}
