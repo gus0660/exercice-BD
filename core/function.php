@@ -19,7 +19,7 @@ function displayUsers(){
 
   // Parcourt et affiche le nom de chaque utilisateur
   foreach ($users as $user) {
-    echo "<p class='user-name'>" . htmlspecialchars($user['nom']) . "</p>";
+    echo "<p class='user-name'>" . htmlspecialchars($user['Nom']) . "</p>";
   }
 }
 function messageSession(){
