@@ -18,6 +18,13 @@ if (isset($_POST['submit'])) {
     }
     // Récupérer l'utilisateur depuis la base de données
     $user = getUserByEmail($email); // Récupération de l'utilisateur par son email
+    $sql = "SELECT nom FROM liste_utilisateurs_roles JOIN role ON id = id_role WHERE id_utilisateur = :idUser";
+    $stmt = $bdd->prepare($sql);
+    $stmt->bindParam(':idUser', $user['id']);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    var_dump($result);
+    die();
     if ($user && password_verify($password, $user['password'])) { 
         // Le mot de passe est correct, on crée les données de la session
         $_SESSION['profil'] = $user; // Stocker les infos utilisateur dans la session
