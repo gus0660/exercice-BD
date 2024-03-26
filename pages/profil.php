@@ -8,11 +8,14 @@
  ?>
 <section class="container text-center">
   <?php include 'partials/menu.php'; ?>
-  <h1>Coucou <?= $user['name'] ?> et <?php echo $user['name'] ?></h1>
+  <div class="border border-3 m-3">
+    <h1>Coucou <?= $user['name'] ?></h1>
     <pre>id user : <?= $user['id']?></pre>
     <p> <?= $user['email'] ?></p>
     <p> password crypté : <br><?= $user['password'] ?></p>
     <a href="controllers/logout.php">déconnexion</a>
+  </div>
+  
 </section>
     
 <?php
