@@ -5,9 +5,9 @@ require_once '../core/function.php';
 // Vérifie si le formulaire à été soumis
 // if (isset($_POST['submit'])) {
 if (isset($_POST['submit'])){
-        $nameError = validatNotImpty($_POST['nameInput'], 'Nom') ?: validateUserName($_POST['nameInput']);
-        $emailError = validatNotImpty($_POST['emailInput'], 'email') ?: validateEmail($_POST['emailInput']);
-        $passwordError = validatNotImpty($_POST['passInput'], 'Password')?: validatePassword($_POST['passInput']);
+        $nameError = validateNotEmpty($_POST['nameInput'], 'Nom') ?: validateUserName($_POST['nameInput']);
+        $emailError = validateNotEmpty($_POST['emailInput'], 'email') ?: validateEmail($_POST['emailInput']);
+        $passwordError = validateNotEmpty($_POST['passInput'], 'Password')?: validatePassword($_POST['passInput']);
         if ($nameError || $emailError || $passwordError) {
             $_SESSION['flash']['danger'] = $nameError ?: ($emailError ?: $passwordError);
             header('location: ../register');
