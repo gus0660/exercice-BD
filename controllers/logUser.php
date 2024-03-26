@@ -1,7 +1,7 @@
 <?php
 session_start(); // Démarrage de la session
 require_once '../config/db.php'; // Inclusion de la connexion à la base de données
-require_once '../core/functions.php'; // Inclusion du fichier de fonctions
+require_once '../core/function.php'; // Inclusion du fichier de fonctions
 
 // Vérifier si le formulaire a été soumis
 if (isset($_POST['submit'])) {
