@@ -1,10 +1,5 @@
 <?php
-function logedIn(){
-  if (!isset($_SESSION['profil'])) {
-    header('Location: index.php');
-    exit;
-  }
-}
+
 function displayUsers(){
   global $bdd;
   // Prépare une requête SQL pour récupérer toutes les entrées de la table
@@ -22,11 +17,63 @@ function displayUsers(){
     echo "<p class='user-name'>" . htmlspecialchars($user['Nom']) . "</p>";
   }
 }
+function logedIn(){
+  if (!isset($_SESSION['profil'])) {
+    header('Location: index.php');
+    exit;
+  }
+}
+function logOutUser(){
+  if (isset($_GET['logout']) && $_GET['logout'] == 'success'){ // Vérification de la déconnexion
+    $message = "<div class='alert alert-success col-6 m-auto p-3 my-3'>Vous etes bien déconnecté</div>"; // Message de déconnexion
+  }
+  if (isset($message)) {
+    echo "$message";
+  }
+}
 function messageSession(){
   if (isset($_SESSION['message'])) { // Vérification de l'existence du message de la session
     echo "<h5>" . $_SESSION['message'] . "</h5>"; // Affichage du message de la session
     unset($_SESSION['message']); // Suppression du message de la session
   }
+}
+function getUserByEmail($email){
+  global $bdd;
+  try {
+    $sql = "SELECT * FROM liste_utilisateurs WHERE email = :email";
+    $req = $bdd->prepare($sql);
+    $req->bindParam(':email', $email);
+    $req->execute();
+    $user = $req->fetch();
+    return $user;
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+    return null;
+  }
+}
+function createUser($name, $email, $password){
+  global $bdd;
+  $hashPass = password_hash($password, PASSWORD_DEFAULT);
+  $sql = "INSERT INTO liste_utilisateurs (Nom, email, password) VALUES ('$name', '$email', '$password')";
+  $req = $bdd->prepare($sql);
+  $req->bindParam(':Nom', $name);
+  $req->bindParam(':email', $email);
+  $req->bindParam(':password', $hashPass);
+  if ($bdd->execute($sql)) {
+    return $bdd->lastInsertId();
+  }
+  return false;
+}
+function validateUserExist($email) {
+  global $bdd;
+  $sql = "SELECT COUNT(*) FROM liste_utilisateurs WHERE email = :email";
+  $req = $bdd->prepare($sql);
+  $req->bindParam(':email', $email);
+  $req->execute();
+  if ($req->fetchColumn() > 0) {
+    return $_SESSION['flash']['danger'] = "Cet email est déjà utilisé.";
+  }
+  return null;
 }
 function validatNotImpty($fiel, $fieldName){
   if (empty($fiel)) {
@@ -88,15 +135,4 @@ function validatePassword($password){
  return "Le mot de passe doit être composé de 4 à 30 lettres et des chiffres!";
   }
   return null;
-}
-function logOutUser(){
-  if (isset($_GET['logout']) && $_GET['logout'] == 'success'){ // Vérification de la déconnexion
-    $message = "div class='row'><div class='alert alert-success col-6 m-auto p-3 my-3'>Vous etes bien déconnecté</div></div>"; // Message de déconnexion
-  }
-  if (isset($message)) {
-    echo "$message";
-  }
-}
-function createUser(){
-  global $bdd;
 }

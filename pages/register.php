@@ -1,7 +1,7 @@
 <?php
 session_start(); // Démarrage de la session
 $title = 'Inscription'; // Déclaration du titre de la page
-require '../core/functions.php'; // Inclusion du fichier de fonctions
+require '../core/function.php'; // Inclusion du fichier de fonctions
 include 'partials/head.php'; // Inclusion du fichier d'en-tête
 include 'partials/menu.php'; // Inclusion du fichier de menu
 ?>
