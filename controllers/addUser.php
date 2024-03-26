@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $userId = createUser($_POST['name'], $_POST['email'], $_POST['password']);
 
     if ($userId) {
-        $_SESSION['profil'] = ['name' => $_POST['name'], 'email' => $_POST['email'], 'id' => $userId];
+        $_SESSION['profil'] = ['name' => $_POST['name'], 'email' => $_POST['email'], 'dateInscription' => $userId['dateInscription'], 'id' => $userId['id']];
         $_SESSION['flash']['success'] = 'Votre compte a bien été créé' . ' !';
         header('location: ../profil');
         exit();

@@ -63,7 +63,7 @@ function createUser($name, $email, $password)
 {
   global $bdd;
   $hashPass = password_hash($password, PASSWORD_DEFAULT);
-  $date = date('Y-m-d H:H-i-s');
+  $date = date('Y-m-d');
   $sql = "INSERT INTO liste_utilisateurs (Nom, email, password, dateInscription) VALUES (:nom, :email, :password, :dateInscription)";
   $req = $bdd->prepare($sql);
   $req->bindParam(':nom', $name);
@@ -71,7 +71,7 @@ function createUser($name, $email, $password)
   $req->bindParam(':password', $hashPass);
   $req->bindParam(':dateInscription', $date);
   if ($req->execute()) {
-    return $bdd->lastInsertId();
+    return ['id' => $bdd->lastInsertId(), 'dateInscription' => $date];
   }
   return false;
 }
