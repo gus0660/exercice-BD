@@ -75,7 +75,7 @@ function validateUserExist($email) {
   }
   return null;
 }
-function validatNotImpty($fiel, $fieldName){
+function validateNotEmpty($fiel, $fieldName){
   if (empty($fiel)) {
     return "Le champ $fieldName ne peut pas être vide!";
   }
