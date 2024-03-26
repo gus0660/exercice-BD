@@ -9,10 +9,10 @@
 <section class="container text-center">
   <?php include 'partials/menu.php'; ?>
   <div class="border border-3 m-3">
-    <h1>Coucou <?= $user['name'] ?></h1>
-    <pre>id user : <?= $user['id']?></pre>
-    <p> <?= $user['email'] ?></p>
-    <p> password crypté : <br><?= $user['password'] ?></p>
+    <h1 class="border border-3 m-3">Coucou <?= $user['name'] ?></h1>
+    <pre class="border border-3 m-3">id user : <?= $user['id']?></pre>
+    <p class="border border-3 m-3"> <?= $user['email'] ?></p>
+    <p class="border border-3 m-3"> password crypté : <br><?= $user['password'] ?></p>
     <a href="controllers/logout.php">déconnexion</a>
   </div>
   
