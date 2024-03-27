@@ -4,6 +4,8 @@ $title = 'Profil'; // Déclaration du titre de la page
 require '../core/function.php'; // Inclusion du fichier de fonctions
 logedIn(); // Appel de la fonction de connexion
 $user = $_SESSION['profil']; // Récupération des données de l'utilisateur
+// var_dump($_SESSION['profil']);
+// die();
 include 'partials/head.php'; // Inclusion du fichier d'en-tête
 ?>
 <section class="container text-center">

@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     
     if ($user && password_verify($password, $user['password'])) { 
         // Le mot de passe est correct, on crée les données de la session
-        $_SESSION['profil'] = [ 'id' => $user['id'], 'email' => $user['email'], 'dateInscription' => $user['dateInscription'], 'roleLevel' => $result]; // Stocker les infos utilisateur dans la session
+        $_SESSION['profil'] = [ 'id' => $user['id'], 'name' => $user['Nom'], 'email' => $user['email'], 'dateInscription' => $user['dateInscription'], 'roleLevel' => $result]; // Stocker les infos utilisateur dans la session
         // var_dump($_SESSION['profil']['roleLevel']);
         // die();
         $_SESSION['flash']['success'] = "Vous êtes maintenant connecté."; // Message de connexion

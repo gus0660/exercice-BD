@@ -20,8 +20,23 @@ function displayUsers()
 }
 function logedIn()
 {
-  if (!isset($_SESSION['profil']) || !in_array('role_admin', $_SESSION['profil'])) {
-    header('Location: index');
+  $currentPage = basename($_SERVER['PHP_SELF']);
+  if(isset($_SESSION['profil'])){
+    if($currentPage === 'login.php' && in_array('role_admin', $_SESSION['profil']['roleLevel'])){
+      var_dump($_SESSION['profil']);
+      die();
+      header('Location: admin');
+      exit;
+    }
+    if($currentPage === 'login.php' && in_array('role_user', $_SESSION['profil']['roleLevel'])){
+      header('Location: profil');
+      exit;
+    }
+
+    // conditions
+  }else {
+    $_SESSION['flash']['danger'] = "dégage";
+    header('Location: index.php');
     exit;
   }
 }
@@ -71,7 +86,14 @@ function createUser($name, $email, $password)
   $req->bindParam(':password', $hashPass);
   $req->bindParam(':dateInscription', $date);
   if ($req->execute()) {
-    return ['id' => $bdd->lastInsertId(), 'dateInscription' => $date];
+    $userId = $bdd->lastInsertId();
+    $userRole = 1;
+    $sql = "INSERT INTO liste_utilisateurs_roles (id_utilisateur, id_role) VALUES (:idUser, :idRole)";
+    $req = $bdd->prepare($sql);
+    $req->bindParam(':idUser', $userId);
+    $req->bindParam(':idRole', $userRole);
+    $req->execute();
+    return ['id' => $userId, 'dateInscription' => $date];
   }
   return false;
 }

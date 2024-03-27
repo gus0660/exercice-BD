@@ -16,6 +16,9 @@
           <a class="nav-link" href="login">Connexion</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="register">Inscription</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="controllers/logout.php">Déconnexion</a>
         </li>
       </ul>

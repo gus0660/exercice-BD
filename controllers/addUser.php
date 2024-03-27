@@ -18,10 +18,16 @@ if (isset($_POST['submit'])) {
         header('location: ../register');
         exit();
     }
-    $userId = createUser($_POST['name'], $_POST['email'], $_POST['password']);
+    $user = createUser($_POST['name'], $_POST['email'], $_POST['password']);
+    $userId = $user['id'];
+    $sql = 'SELECT nom FROM liste_utilisateurs_roles JOIN role ON  id_role = id WHERE id_utilisateur = :iduser';
+    $stmt = $bdd->prepare($sql);
+    $stmt->bindParam(':iduser', $userId);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    if ($userId) {
-        $_SESSION['profil'] = ['name' => $_POST['name'], 'email' => $_POST['email'], 'dateInscription' => $userId['dateInscription'], 'id' => $userId['id']];
+    if ($user) {
+        $_SESSION['profil'] = ['name' => $_POST['name'], 'email' => $_POST['email'], 'dateInscription' => $user['dateInscription'], 'id' => $userId, 'roleLevel' => $result];
         $_SESSION['flash']['success'] = 'Votre compte a bien été créé' . ' !';
         header('location: ../profil');
         exit();
