@@ -20,8 +20,8 @@ function displayUsers()
 }
 function logedIn()
 {
-  if (!isset($_SESSION['profil'])) {
-    header('Location: index.php');
+  if (!isset($_SESSION['profil']) || !in_array('role_admin', $_SESSION['profil'])) {
+    header('Location: index');
     exit;
   }
 }

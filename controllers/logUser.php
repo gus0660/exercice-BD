@@ -22,12 +22,13 @@ if (isset($_POST['submit'])) {
     $stmt = $bdd->prepare($sql);
     $stmt->bindParam(':idUser', $user['id']);
     $stmt->execute();
-    $result = $stmt->fetchAll();
-    var_dump($result);
-    die();
+    $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    
     if ($user && password_verify($password, $user['password'])) { 
         // Le mot de passe est correct, on crée les données de la session
-        $_SESSION['profil'] = $user; // Stocker les infos utilisateur dans la session
+        $_SESSION['profil'] = [ 'id' => $user['id'], 'email' => $user['email'], 'dateInscription' => $user['dateInscription'], 'roleLevel' => $result]; // Stocker les infos utilisateur dans la session
+        // var_dump($_SESSION['profil']['roleLevel']);
+        // die();
         $_SESSION['flash']['success'] = "Vous êtes maintenant connecté."; // Message de connexion
         header('Location: ../profil'); // Rediriger vers une page de profil
         exit; // Arrêt du script

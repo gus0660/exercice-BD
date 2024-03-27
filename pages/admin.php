@@ -3,14 +3,12 @@ session_start();
 require '../core/function.php'; // Inclusion du fichier de fonctions
 logedIn(); // Appel de la fonction de connexion
 $title = 'ADMIN'; // Déclaration du titre de la page
-var_dump($_SESSION['profil']);
-die();
-// Vérifiez si l'utilisateur est connecté et si son rôle est 'role_admin'
-if (!isset($_SESSION['profil']) || !in_array('role_admin', $_SESSION['profil'])){
-    header('Location: login.php');
-    exit();
-}
-echo "<h1>Bienvenue sur la page ADMINISTRATION</h1>";
+
+
+  echo "<h1>Bienvenue sur la page ADMINISTRATION</h1>";
+  
+
+
 
 
 
