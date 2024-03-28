@@ -21,6 +21,7 @@ function displayUsers()
 function displayUsersAdmin()
 {
   global $bdd;
+  $currentUserId = $_SESSION['profil']['id']; // ID de l'utilisateur connecté
   // Prépare une requête SQL pour récupérer toutes les entrées de la table
   $sql = "SELECT * FROM liste_utilisateurs";
   $req = $bdd->prepare($sql);
@@ -33,11 +34,17 @@ function displayUsersAdmin()
 
   // Parcourt et affiche le nom de chaque utilisateur
   foreach ($users as $user) {
-    echo "<p class='user-name'>" . htmlspecialchars($user['Nom']);
-    echo "<form action='delete_user.php' method='post'>
-              <input type='hidden' name='id' value='" . $user['id'] . "'>
-              <button type='submit' class='ms-3 btn btn-danger'>Supprimer</button>
-          </form></p>";
+    echo "<div class='user-entry'>";
+    echo htmlspecialchars($user['Nom']);
+
+    // Afficher le bouton de suppression uniquement si l'utilisateur n'est pas l'admin connecté
+    if ($user['id'] != $currentUserId) {
+      echo "<form action='controllers/deleteUser.php' method='post' class='d-inline m-1'>
+                      <input type='hidden' name='id' value='" . $user['id'] . "'>
+                      <button type='submit' class='m-1 btn btn-danger'>Supprimer</button>
+                  </form>";
+    }
+    echo "</div>";
   }
 }
 
@@ -119,8 +126,10 @@ function deleteUser($id)
   global $bdd;
   $sql = "DELETE FROM liste_utilisateurs WHERE id = :id";
   $req = $bdd->prepare($sql);
-  $req->bindParam(':id', $id);
+  $req->bindParam(':id', $id, PDO::PARAM_INT);
   $req->execute();
+  header('Location: ../admin'); // Rediriger vers la page admin après la suppression
+  exit();
 }
 function validateUserExist($email)
 {

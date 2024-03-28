@@ -20,7 +20,7 @@ include 'partials/head.php'; // Inclusion du fichier d'en-tête
   <div class="border border-3 m-3">
     <h2>Les utilisateurs enregistés</h2>
     <div class="row justify-content-center m-5">
-            <div class="col-12 text-center border border-3 m-1">
+            <div class="col-6 text-center border border-3 m-1">
                 <p><?= displayUsersAdmin() ?></p>
             </div>
         </div>
