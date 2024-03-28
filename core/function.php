@@ -20,26 +20,20 @@ function displayUsers()
 }
 function logedIn()
 {
+  
+  if(!isset($_SESSION['profil'])){
+    $_SESSION['flash']['danger'] = "Ce serait mieux d'être connecté pour accéder à cette page, non !?";
+    header('Location: login.php');
+    exit;
+  }
   $currentPage = basename($_SERVER['PHP_SELF']);
-  if(isset($_SESSION['profil'])){
-    if($currentPage === 'login.php' && in_array('role_admin', $_SESSION['profil']['roleLevel'])){
-      var_dump($_SESSION['profil']);
-      die();
-      header('Location: admin');
-      exit;
-    }
-    if($currentPage === 'login.php' && in_array('role_user', $_SESSION['profil']['roleLevel'])){
-      header('Location: profil');
-      exit;
-    }
-
-    // conditions
-  }else {
-    $_SESSION['flash']['danger'] = "dégage";
+  if ($currentPage === 'admin.php' && !in_array('role_admin', $_SESSION['profil']['roleLevel'])) {
+    $_SESSION['flash']['danger'] = "désolé, mais vous n'avez pas les droits pour accéder à cette page";
     header('Location: index.php');
     exit;
   }
 }
+
 function logOutUser()
 {
   if (isset($_GET['logout']) && $_GET['logout'] == 'success') { // Vérification de la déconnexion

@@ -16,6 +16,7 @@ $user = $_SESSION['profil']; // Récupération des données de l'utilisateur
 include 'partials/head.php'; // Inclusion du fichier d'en-tête
 ?>
 <section class="container text-center">
+  
   <?php include 'partials/menu.php'; ?>
   <div class="border border-3 m-3">
     <h1 class="d-inline-block border border-3 m-3">Coucou <?= $user['name'] ?></h1>
