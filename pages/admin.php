@@ -15,7 +15,7 @@ include 'partials/head.php'; // Inclusion du fichier d'en-tête
     <pre class="border border-3 m-3">id user : <?= $user['id'] ?></pre>
     <p class="border border-3 m-3"> <?= $user['email'] ?></p>
     <p>Date d'inscription : <?= isset($user['dateInscription']) ? $user['dateInscription'] : 'Non disponible' ?></p>
-    <a href="controllers/logout.php">déconnexion</a>
+    
   </div>
 
 </section>
