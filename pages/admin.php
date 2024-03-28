@@ -3,18 +3,10 @@ session_start();
 require '../core/function.php'; // Inclusion du fichier de fonctions
 logedIn(); // Appel de la fonction de connexion
 $title = 'ADMIN'; // Déclaration du titre de la page
-
-
-  echo "";
-  
-
-
-
-
-
 $user = $_SESSION['profil']; // Récupération des données de l'utilisateur
 include 'partials/head.php'; // Inclusion du fichier d'en-tête
 ?>
+
 <section class="container text-center">
   <h1>Bienvenue sur la page ADMINISTRATION</h1>
   <?php include 'partials/menu.php'; ?>
