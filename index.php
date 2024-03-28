@@ -11,11 +11,11 @@ include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
 
     
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center m-5">
         
             <div class="col-12 col-md-6 col-lg-4">
                 
-                <div class="form-group text-center">
+                <div class="text-center border border-3">
                     <?php 
                     messageSession();
                     logOutUser();
@@ -26,8 +26,8 @@ include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
             </div>
         </div>
         
-        <div class="row justify-content-center">
-            <div class="col-12 text-center">
+        <div class="row justify-content-center m-5">
+            <div class="col-3 text-center border border-3 m-2">
                 <?php
                 displayUsers();
                 ?>
