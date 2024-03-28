@@ -27,11 +27,15 @@ if (isset($_POST['submit'])) {
     if ($user && password_verify($password, $user['password'])) { 
         // Le mot de passe est correct, on crée les données de la session
         $_SESSION['profil'] = [ 'id' => $user['id'], 'name' => $user['Nom'], 'email' => $user['email'], 'dateInscription' => $user['dateInscription'], 'roleLevel' => $result]; // Stocker les infos utilisateur dans la session
-        // var_dump($_SESSION['profil']['roleLevel']);
-        // die();
-        $_SESSION['flash']['success'] = "Vous êtes maintenant connecté."; // Message de connexion
+        if(in_array('role_admin', $result)){
+            $_SESSION['flash']['success'] = "Vous êtes maintenant connecté."; // Message de connexion
+        header('Location: ../admin'); // Rediriger vers une page de profil
+        exit; // Arrêt du script
+        }elseif(in_array('role_user', $result)){
+            $_SESSION['flash']['success'] = "Vous êtes maintenant connecté."; // Message de connexion
         header('Location: ../profil'); // Rediriger vers une page de profil
         exit; // Arrêt du script
+        } 
     } else {
         // Les identifiants sont incorrects, on prépare un message flash
         $_SESSION['flash']['danger'] = "Email ou mot de passe incorrect."; // Message d'erreur

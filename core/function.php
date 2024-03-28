@@ -27,6 +27,7 @@ function logedIn()
     exit;
   }
   $currentPage = basename($_SERVER['PHP_SELF']);
+
   if ($currentPage === 'admin.php' && !in_array('role_admin', $_SESSION['profil']['roleLevel'])) {
     $_SESSION['flash']['danger'] = "désolé, mais vous n'avez pas les droits pour accéder à cette page";
     header('Location: index.php');

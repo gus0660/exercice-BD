@@ -3,7 +3,7 @@ session_start(); // Démarrage de la session
 $title = 'Connexion'; // Déclaration du titre de la page
 require '../core/function.php'; // Inclusion du fichier de fonctions
 include 'partials/head.php';
-// logedIn();
+
 ?>
 <section class="container text-center">
     <?php include 'partials/menu.php'; ?>
