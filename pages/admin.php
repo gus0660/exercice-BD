@@ -7,7 +7,7 @@ $user = $_SESSION['profil']; // Récupération des données de l'utilisateur
 include 'partials/head.php'; // Inclusion du fichier d'en-tête
 ?>
 
-<section class="container text-center">
+<section class="container text-center col-6">
   <h1>Bienvenue sur la page ADMINISTRATION</h1>
   <?php include 'partials/menu.php'; ?>
   <div class="border border-3 m-3">
