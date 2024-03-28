@@ -23,7 +23,7 @@ function logedIn()
   
   if(!isset($_SESSION['profil'])){
     $_SESSION['flash']['danger'] = "Ce serait mieux d'être connecté pour accéder à cette page, non !?";
-    header('Location: login.php');
+    header('Location: index.php');
     exit;
   }
   $currentPage = basename($_SERVER['PHP_SELF']);
