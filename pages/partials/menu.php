@@ -18,12 +18,10 @@
       <li class="nav-item">
         <a class="nav-link" href="register">Inscription</a>
       </li>
-      
         <?php
         if (isset($_SESSION['profil']) && in_array('role_admin', $_SESSION['profil']['roleLevel'])) {
           echo '<li class="nav-item"><a class="nav-link" href="admin">Accés Administration</a></li>';
         } ?>
-      
       <li class="nav-item">
         <a class="nav-link" href="controllers/logout.php">Déconnexion</a>
       </li>
