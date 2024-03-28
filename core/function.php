@@ -168,8 +168,3 @@ function validatePassword($password)
   }
   return null;
 }
-function displayButtonAdmin() {
-  if (isset($_SESSION['profil']) && $_SESSION['profil']['roleLevel'] == 'role_admin') {
-    return '<a href="admin" class="btn btn-primary">Accés Administration</a>';
-  }
-}
