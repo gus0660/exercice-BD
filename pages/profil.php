@@ -16,9 +16,7 @@ include 'partials/head.php'; // Inclusion du fichier d'en-tête
     <p class="border border-3 m-3"> <?= $user['email'] ?></p>
     <p>Date d'inscription : <?= isset($user['dateInscription']) ? $user['dateInscription'] : 'Non disponible' ?></p>
     <a href="controllers/logout.php">déconnexion</a>
-    <?php 
-    if ($_SESSION['profil'] && in_array('role_admin', $_SESSION['profil']['roleLevel'])) {
-      echo '<a href="admin" class="btn btn-primary">Accés Administration</a>';} ?>
+    
     
   </div>
 
