@@ -14,13 +14,11 @@
       <li class="nav-item">
         <a class="nav-link" href="login">Connexion</a>
       </li>
-        <?php
-        if(!isset($_SESSION['profil']) && empty($_SESSION['profil'])) {
-          echo '<li class="nav-item">
-          <a class="nav-link" href="register">Inscription</a>
-        </li>';
-        }
         
+        <li class="nav-item">
+          <a class="nav-link" href="register">Inscription</a>
+        </li>
+        <?php
         if (isset($_SESSION['profil']) && in_array('role_admin', $_SESSION['profil']['roleLevel'])) {
           echo '<li class="nav-item"><a class="nav-link" href="admin">Accés Administration</a></li>';
         } 

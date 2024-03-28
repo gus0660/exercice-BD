@@ -17,10 +17,33 @@ function displayUsers()
   foreach ($users as $user) {
     echo "<p class='user-name'>" . htmlspecialchars($user['Nom']) . "</p>";
   }
+};
+function displayUsersAdmin()
+{
+  global $bdd;
+  // Prépare une requête SQL pour récupérer toutes les entrées de la table
+  $sql = "SELECT * FROM liste_utilisateurs";
+  $req = $bdd->prepare($sql);
+
+  // Exécute la requête
+  $req->execute();
+
+  // Récupère tous les utilisateurs en tant qu'array
+  $users = $req->fetchAll();
+
+  // Parcourt et affiche le nom de chaque utilisateur
+  foreach ($users as $user) {
+    echo "<p class='user-name'>" . htmlspecialchars($user['Nom']);
+    echo "<form action='delete_user.php' method='post'>
+              <input type='hidden' name='id' value='" . $user['id'] . "'>
+              <button type='submit' class='ms-3 btn btn-danger'>Supprimer</button>
+          </form></p>";
+  }
 }
+
 function logedIn()
 {
-  if(!isset($_SESSION['profil'])){
+  if (!isset($_SESSION['profil'])) {
     $_SESSION['flash']['danger'] = "Ce serait mieux d'être connecté pour accéder à cette page, non !?";
     header('Location: index.php');
     exit;
@@ -90,6 +113,14 @@ function createUser($name, $email, $password)
     return ['id' => $userId, 'dateInscription' => $date];
   }
   return false;
+}
+function deleteUser($id)
+{
+  global $bdd;
+  $sql = "DELETE FROM liste_utilisateurs WHERE id = :id";
+  $req = $bdd->prepare($sql);
+  $req->bindParam(':id', $id);
+  $req->execute();
 }
 function validateUserExist($email)
 {
