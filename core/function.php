@@ -20,7 +20,6 @@ function displayUsers()
 }
 function logedIn()
 {
-  
   if(!isset($_SESSION['profil'])){
     $_SESSION['flash']['danger'] = "Ce serait mieux d'être connecté pour accéder à cette page, non !?";
     header('Location: index.php');
@@ -168,4 +167,9 @@ function validatePassword($password)
     return "Le mot de passe doit être composé de 4 à 30 lettres et des chiffres!";
   }
   return null;
+}
+function displayButtonAdmin() {
+  if (isset($_SESSION['profil']) && $_SESSION['profil']['roleLevel'] == 'role_admin') {
+    return '<a href="admin" class="btn btn-primary">Accés Administration</a>';
+  }
 }

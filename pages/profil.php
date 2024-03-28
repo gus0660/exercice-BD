@@ -10,12 +10,17 @@ include 'partials/head.php'; // Inclusion du fichier d'en-tête
 ?>
 <section class="container text-center">
   <?php include 'partials/menu.php'; ?>
-  <div class="border border-3 m-3">
+  <div class="row border border-3 m-3">
     <h1 class="d-inline-block border border-3 m-3">Coucou <?= $user['name'] ?></h1>
     <pre class="border border-3 m-3">id user : <?= $user['id'] ?></pre>
     <p class="border border-3 m-3"> <?= $user['email'] ?></p>
     <p>Date d'inscription : <?= isset($user['dateInscription']) ? $user['dateInscription'] : 'Non disponible' ?></p>
     <a href="controllers/logout.php">déconnexion</a>
+    <?php 
+    // $currentPage = basename($_SERVER['PHP_SELF']);
+    if ($_SESSION['profil'] && in_array('role_admin', $_SESSION['profil']['roleLevel'])) {
+      echo '<a href="admin" class="btn btn-primary">Accés Administration</a>';} ?>
+    
   </div>
 
 </section>

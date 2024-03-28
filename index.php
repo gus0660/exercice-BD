@@ -27,7 +27,7 @@ include 'pages/partials/head.php'; // Inclusion du fichier d'en-tête
         </div>
         
         <div class="row justify-content-center m-5">
-            <div class="col-3 text-center border border-3 m-2">
+            <div class="col-6 text-center border border-3 m-2">
                 <?php
                 displayUsers();
                 ?>
